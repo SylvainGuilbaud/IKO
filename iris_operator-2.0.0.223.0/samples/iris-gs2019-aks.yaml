@@ -1,0 +1,59 @@
+apiVersion: intersystems.com/v1alpha1
+kind: IrisCluster
+metadata:
+  name: iris-gs2019
+spec:
+  passwordHash: '234FEAD831F6D0CCF732B03ACEF876CBD78C66EA,ff8arejt'
+  licenseKeySecret:
+    name: iris-key-secret
+  configSource:
+    name: iris-cpf
+  topology:
+    arbiter:
+      image: intersystems/arbiter:2020.1.0-dev
+      preferredZones:
+        - eastus-1
+      podTemplate:
+        spec:
+          imagePullSecrets:
+            - name: dockerhub-secret
+    data:
+      shards: 1
+      mirrored: true
+      image: intersystems/iris:2020.1.0-dev
+      preferredZones:
+        - eastus-2
+        - eastus-3
+      podTemplate:
+        spec:
+          imagePullSecrets:
+            - name: dockerhub-secret
+      updateStrategy:
+        type: RollingUpdate
+      storage:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Gi
+        storageClassName: iris-ssd-storageclass
+    compute:
+      image: intersystems/iris:2020.1.0-dev
+      replicas: 2
+      preferredZones:
+        - eastus-2
+        - eastus-3
+      podTemplate:
+        spec:
+          imagePullSecrets:
+            - name: dockerhub-secret
+      storage:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Gi
+        storageClassName: iris-ssd-storageclass
+  serviceTemplate:
+    spec:
+      type: LoadBalancer

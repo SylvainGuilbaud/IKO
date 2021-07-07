@@ -1,0 +1,25 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupBatch
+metadata:
+  name: iris-gs2019-data
+  namespace: intersystems
+spec:
+  repository:
+    name: gcs-repo
+  schedule: "@daily"
+  paused: true
+  members:
+  - target:
+      ref:
+        apiVersion: apps/v1
+        kind: StatefulSet
+        name: iris-gs2019-data
+      volumeMounts:
+        - name: iris-data
+          mountPath: /irissys/data
+      paths:
+        - /irissys/data
+  retentionPolicy:
+    name: 'keep-last-5'
+    keepLast: 5
+    prune: true
