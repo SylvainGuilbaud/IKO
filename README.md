@@ -11,7 +11,7 @@ The primary goal of IKO is to simplify and standardize the lifecycle management 
 - Integration with Kubernetes secrets and persistent storage
 - Monitoring and health checks for managed IRIS resources
 
-## Sample Usage (from `iko-3.8.42.100` directory)
+## Sample Usage (from [`iko-3.8.42.100`](iko-3.8.42.100/samples))
 In this example, the IKO will create and manage a three-node IRIS cluster, using the specified image, license, and configuration.
 
 Example: Deploying an IRIS instance using a custom resource:
@@ -34,7 +34,4 @@ spec:
     replicas: 3
 ```
 
-For more samples and advanced configurations, refer to the `iko-3.8.42.100/samples` directory.
-## Samples
-
-Explore more configuration examples in the [samples directory](iko-3.8.42.100/samples).
+For more samples and advanced configurations, refer to the [`iko-3.8.42.100/samples`](iko-3.8.42.100/samples) directory.
