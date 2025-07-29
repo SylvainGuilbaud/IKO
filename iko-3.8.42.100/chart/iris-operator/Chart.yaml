@@ -1,0 +1,8 @@
+apiVersion: v1
+description: 'IRIS Operator by InterSystems'
+name: iris-operator-arm
+version: 3.8.42
+appVersion: 3.8.42.100
+maintainers:
+  - name: intersystems
+    email: support@intersystems.com

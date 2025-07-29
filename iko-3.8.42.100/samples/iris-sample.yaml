@@ -1,0 +1,15 @@
+# full IKO documentation:
+# https://docs.intersystems.com/irislatest/csp/docbook/Doc.View.cls?KEY=PAGE_deployment_iko
+apiVersion: intersystems.com/v1alpha1
+kind: IrisCluster
+metadata:
+  name: sample
+spec:
+  topology:
+    data:
+      image: containers.intersystems.com/intersystems/iris-community:2024.2
+      compatibilityVersion: "2024.2.0"
+  serviceTemplate:
+    spec:
+      type: LoadBalancer
+      externalTrafficPolicy: Local

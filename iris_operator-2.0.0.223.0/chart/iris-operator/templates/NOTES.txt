@@ -1,3 +1,0 @@
-To verify that InterSystems Kubernetes Operator has started, run:
-
-  kubectl --namespace={{ .Release.Namespace }} get deployments -l "release={{ .Release.Name }}, app={{ template "iris-operator.name" . }}"
